@@ -1,18 +1,26 @@
 import './App.css';
-import { BrowserRouter, Routes,Route } from 'react-router-dom';
-import Register from './components/Register';
+import { BrowserRouter, Routes,Route,Navigate } from 'react-router-dom';
+import Register from './pages/Register';
+import Dashboard from './pages/Dashboard';
+import Login from './pages/Login';
+import Navbar from './components/Navbar';
+import { useAuth } from "./context/AuthContext"; // Auth context
+
 
 function App() {
-  
-  
+  const { user } = useAuth();  // Get current user (if logged in)
   return (
-    <>
-    <Routes>
- <Route index element={<StepOne />} />
- <Route path="step-2" element={<Register />} />
- <Route path="step-3" element={<Login />}>
-</Routes>
-    </>
+    <BrowserRouter>
+      <Navbar /> 
+      <Routes>
+        <Route
+          path="/"
+          element={user ? <Dashboard /> : <Navigate to="/login" />}  // Protected route
+        />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

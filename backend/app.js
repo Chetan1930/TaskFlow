@@ -20,7 +20,7 @@ app.use(express.json()); // For parsing application/json
 app.use(express.urlencoded({ extended: true })); // For parsing form data
 
 // Routes
-app.use('/api',routes);
+app.use('/api/auth',routes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {

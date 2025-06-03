@@ -1,9 +1,9 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState } from "react";  // Hooks
 
-const AuthContext = createContext();
+const AuthContext = createContext(); // Create the context
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(() => JSON.parse(localStorage.getItem("user")) || null);
+  const [user, setUser] = useState(() => JSON.parse(localStorage.getItem("user")) || null);  // Get user from storage
   const [token, setToken] = useState(() => localStorage.getItem("token") || "");
 
   const login = (userData, authToken) => {
@@ -26,4 +26,4 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
-export const useAuth = () => useContext(AuthContext);
+export const useAuth = () => useContext(AuthContext);  // Custom hook
