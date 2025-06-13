@@ -14,9 +14,6 @@ const Login = () => {
   e.preventDefault();
   try {
     const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/auth/login`, form);
-    console.log("this is the total data that wer fetch so far :",res.data);
-    console.log("this is the user : ",res.data.user);
-    console.log("this is the token we are getting : ",res.data.token);
     login(res.data.user, res.data.token);
     navigate("/");
   } catch (err) {
